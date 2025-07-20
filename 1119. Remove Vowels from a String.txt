@@ -1,0 +1,13 @@
+class Solution {
+    public String removeVowels(String s) {
+        StringBuilder returnString = new StringBuilder(s);
+        Set<Character> vowelList = Set.of('a','e','i','o','u');
+        for(int i = 0; i < returnString.length(); i++){
+            if(vowelList.contains(returnString.charAt(i))){
+                returnString.deleteCharAt(i);
+                i--;
+            }
+        }
+        return returnString.toString();
+    }
+}
