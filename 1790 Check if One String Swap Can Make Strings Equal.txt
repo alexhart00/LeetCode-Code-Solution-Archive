@@ -1,0 +1,30 @@
+class Solution {
+    public boolean areAlmostEqual(String s1, String s2) {
+        Set<Character> s1Characters = new HashSet<>();
+        List<Integer> differences = new ArrayList<>();
+
+        for (char c : s1.toCharArray())
+            s1Characters.add(c);
+
+        for (int i = 0; i < s1.length(); i++) {
+            if (!s1Characters.contains(s2.charAt(i)))
+                return false;
+
+            if (s1.charAt(i) != s2.charAt(i)) {
+                differences.add(i);
+                if (differences.size() > 2) 
+                    return false;
+            }
+        }
+
+        if (differences.size() == 0) 
+            return true;
+
+        if (differences.size() == 2) {
+            int i = differences.get(0), j = differences.get(1);
+            return s1.charAt(i) == s2.charAt(j) && s1.charAt(j) == s2.charAt(i);
+        }
+
+        return false;
+    }
+}
