@@ -1,0 +1,28 @@
+class Solution {
+    public int countCharacters(String[] words, String chars) {
+        HashMap<Character, Integer> charsCharacterCount = new HashMap<>();
+        int totalLengths = 0;
+
+        for(char c: chars.toCharArray())
+            charsCharacterCount.put(c, charsCharacterCount.getOrDefault(c, 0) + 1);
+
+        for(String word : words){
+            HashMap<Character, Integer> wordCharacterCount = new HashMap<>();
+            boolean addTheLength = true;
+
+            for(char c: word.toCharArray())
+                wordCharacterCount.put(c, wordCharacterCount.getOrDefault(c, 0) + 1);
+
+            for(Character c : wordCharacterCount.keySet())
+                if(wordCharacterCount.get(c) > charsCharacterCount.getOrDefault(c, 0)){
+                    addTheLength = false;
+                    break;
+                }
+
+            if(addTheLength)
+                totalLengths += word.length();
+        }
+
+        return totalLengths; 
+    }
+}
