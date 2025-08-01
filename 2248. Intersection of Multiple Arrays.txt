@@ -1,0 +1,17 @@
+class Solution {
+    public List<Integer> intersection(int[][] nums) {
+        List<Integer> returnList = new ArrayList<>();
+        Map<Integer, Integer> numOccurrence = new HashMap<>();
+
+        for(int[] numArray : nums)
+            for(int num : numArray)
+                numOccurrence.put(num, numOccurrence.getOrDefault(num, 0) + 1);
+
+        for(Map.Entry<Integer, Integer> entry: numOccurrence.entrySet())
+            if(entry.getValue() == nums.length)
+                returnList.add(entry.getKey());
+
+        Collections.sort(returnList);
+        return returnList;
+    }
+}
