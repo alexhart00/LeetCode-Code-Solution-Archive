@@ -1,0 +1,25 @@
+class Solution {
+    public int maxFreqSum(String s) {
+        Set<Character> vowels = Set.of('a', 'e', 'i', 'o', 'u');
+        Map<Character, Integer> charOccurrences = new HashMap<>();
+        int maxvowelOccurrences = 0;
+        int maxconsonantOccurrences = 0;
+
+        for(char c : s.toCharArray())
+            charOccurrences.put(c, charOccurrences.getOrDefault(c, 0) + 1);
+        
+        for(Map.Entry<Character, Integer> entry : charOccurrences.entrySet()){
+            Character c = entry.getKey();
+            Integer occurrences = entry.getValue();
+            if(vowels.contains(c)){
+                if(occurrences > maxvowelOccurrences)
+                    maxvowelOccurrences = occurrences;
+            }else{
+                if(occurrences > maxconsonantOccurrences)
+                        maxconsonantOccurrences = occurrences;
+            }
+        }
+
+        return maxvowelOccurrences + maxconsonantOccurrences;
+    }
+}
