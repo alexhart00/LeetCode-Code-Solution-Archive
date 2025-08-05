@@ -1,0 +1,16 @@
+class Solution {
+    public int maxStudentsOnBench(int[][] students) {
+        Map<Integer, HashSet<Integer>>  studentOnBench = new HashMap<>();
+        Integer maxBench = 0;
+        for(int[] student: students)
+            studentOnBench.computeIfAbsent(student[1], k -> new HashSet<>()).add(student[0]);
+        
+        for(Map.Entry<Integer, HashSet<Integer>> entry: studentOnBench.entrySet()){
+            int setSize = entry.getValue().size();
+            if(setSize > maxBench)
+                maxBench = setSize;
+        }
+
+        return maxBench;
+    }
+}
