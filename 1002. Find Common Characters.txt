@@ -1,0 +1,32 @@
+class Solution {
+    public List<String> commonChars(String[] words) {
+        List<String> returnList = new ArrayList<>();
+        Map<Character, Integer> charOccurrences = new HashMap<>();
+        for (char c : words[0].toCharArray())
+            charOccurrences.put(c, charOccurrences.getOrDefault(c, 0) + 1);
+        
+
+        for (int i = 1; i < words.length; i++) {
+            Map<Character, Integer> currentWordCount = new HashMap<>();
+            for (char c : words[i].toCharArray()) {
+                currentWordCount.put(c, currentWordCount.getOrDefault(c, 0) + 1);
+            }
+
+            for (Character c : new HashSet<>(charOccurrences.keySet())) {
+                if (currentWordCount.containsKey(c)) {
+                    charOccurrences.put(c, Math.min(charOccurrences.get(c), currentWordCount.get(c)));
+                } else {
+                    charOccurrences.remove(c);
+                }
+            }
+        }
+
+        for (Map.Entry<Character, Integer> entry : charOccurrences.entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                returnList.add(String.valueOf(entry.getKey()));
+            }
+        }
+
+        return returnList;
+    }
+}
