@@ -1,0 +1,30 @@
+class Solution {
+    public boolean buddyStrings(String s, String goal) {
+        if (s.length() != goal.length())
+            return false;
+
+        Set<Character> sCharacters = new HashSet<>();
+        List<Integer> differences = new ArrayList<>();
+        
+        for (char c : s.toCharArray())
+            sCharacters.add(c);
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != goal.charAt(i)) {
+                differences.add(i);
+                if (differences.size() > 2) 
+                    return false;
+            }
+        }
+
+        if (differences.size() == 0) 
+            return sCharacters.size() < s.length();
+
+        if (differences.size() == 2) {
+            int i = differences.get(0), j = differences.get(1);
+            return s.charAt(i) == goal.charAt(j) && s.charAt(j) == goal.charAt(i);
+        }
+        
+        return false;
+    }
+}
