@@ -1,0 +1,24 @@
+class Solution {
+    public boolean checkValid(int[][] matrix) {
+        Set<Integer> numSet = new HashSet<>();
+        int n = matrix.length;
+
+        for(int row = 0; row < n; row++){
+            numSet.clear();
+            for(int column = 0; column < n; column++)
+                numSet.add(matrix[row][column]);
+            if(numSet.size() != n)
+                return false;
+        }
+
+        for(int column = 0; column < n; column++){
+            numSet.clear();
+            for(int row = 0; row < n; row++)
+                numSet.add(matrix[row][column]);
+            if(numSet.size() != n)
+                return false;
+        }
+        
+        return true;
+    }
+}
