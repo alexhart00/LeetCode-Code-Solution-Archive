@@ -1,0 +1,15 @@
+class Solution {
+    public int numberOfPoints(List<List<Integer>> nums) {
+        Set<Integer> points = new HashSet<>();
+        int count = 0;
+        for(List<Integer> numList : nums){
+            int start = numList.get(0);
+            int end = numList.get(1);
+            for (int i = start; i <= end; i++) {
+                if(points.add(i))
+                    count++;
+            }
+        }
+        return count;
+    }
+}
