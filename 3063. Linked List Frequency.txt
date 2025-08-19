@@ -1,0 +1,28 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode frequenciesOfElements(ListNode head) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        while(head != null){
+            frequencyMap.put(head.val, frequencyMap.getOrDefault(head.val, 0) + 1);
+            head = head.next;
+        }    
+
+        ListNode newHead = new ListNode();
+        ListNode currentNode = newHead;
+        for(Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()){
+            currentNode.next = new ListNode(entry.getValue());
+            currentNode = currentNode.next;
+        }
+
+        return newHead.next;
+    }
+}
