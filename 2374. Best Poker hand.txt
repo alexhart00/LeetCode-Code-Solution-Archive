@@ -1,0 +1,28 @@
+class Solution {
+    public String bestHand(int[] ranks, char[] suits) {
+        Map<Integer, Integer> ranksMap = new HashMap<>();
+        Map<Character, Integer> suitsMap = new HashMap<>();
+        int count = 0;
+        String returnString = "High Card";
+
+        for(int rank : ranks)
+            ranksMap.put(rank, ranksMap.getOrDefault(rank, 0) + 1);
+
+        for(char suit : suits)
+            suitsMap.put(suit, suitsMap.getOrDefault(suit, 0) + 1);
+
+        for(Map.Entry<Integer, Integer> entry: ranksMap.entrySet())
+            count = Math.max(entry.getValue(), count);
+
+        for(Map.Entry<Character, Integer> entry: suitsMap.entrySet())
+            if(entry.getValue() == 5)
+                returnString = "Flush";
+            
+        if(count >= 3)
+            returnString = "Three of a Kind";
+        else if(count == 2)
+            returnString = "Pair";
+            
+        return returnString;
+    }
+}
