@@ -1,0 +1,47 @@
+
+class Solution {
+    public String longestPalindrome(String s) {
+        if (s.length() == 1) {
+            return s;
+        }
+
+        StringBuilder currentPalindrome;
+        String maxLengthPalindrome = "";
+
+        for (int charIndex = 0; charIndex < s.length(); charIndex++) {
+            int leftCharPointer = charIndex;
+            int rightCharPointer = charIndex;
+            currentPalindrome = new StringBuilder();
+            
+            while (leftCharPointer >= 0 && rightCharPointer < s.length() && s.charAt(leftCharPointer) == s.charAt(rightCharPointer)) {
+                currentPalindrome.insert(0, s.charAt(leftCharPointer));
+                if (leftCharPointer != rightCharPointer) {
+                    currentPalindrome.append(s.charAt(rightCharPointer));
+                }
+                leftCharPointer--;
+                rightCharPointer++;
+            }
+
+            if (currentPalindrome.length() > maxLengthPalindrome.length()) {
+                maxLengthPalindrome = currentPalindrome.toString();
+            }
+
+            leftCharPointer = charIndex;
+            rightCharPointer = charIndex + 1;
+            currentPalindrome = new StringBuilder();
+            
+            while (leftCharPointer >= 0 && rightCharPointer < s.length() && s.charAt(leftCharPointer) == s.charAt(rightCharPointer)) {
+                currentPalindrome.insert(0, s.charAt(leftCharPointer));
+                currentPalindrome.append(s.charAt(rightCharPointer));
+                leftCharPointer--;
+                rightCharPointer++;
+            }
+
+            if (currentPalindrome.length() > maxLengthPalindrome.length()) {
+                maxLengthPalindrome = currentPalindrome.toString();
+            }
+        }
+
+        return maxLengthPalindrome;
+    }
+}
