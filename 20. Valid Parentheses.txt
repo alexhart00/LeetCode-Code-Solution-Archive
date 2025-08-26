@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isValid(String s) {
+        Map<Character, Character> matchPar = Map.of(
+            '(', ')', 
+            '{', '}', 
+            '[', ']');
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (matchPar.containsKey(c)) { 
+                stack.push(c); 
+            } else if (matchPar.containsValue(c)) { 
+                if (stack.isEmpty() || matchPar.get(stack.pop()) != c) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty(); 
+    }
+}
