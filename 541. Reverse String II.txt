@@ -1,0 +1,24 @@
+class Solution {
+    public String reverseStr(String s, int k) {
+        char[] charArray = s.toCharArray();
+        int currentPosition = 0;
+        int stringLength = s.length();
+
+        while(currentPosition < stringLength){
+            int leftP = currentPosition;
+            int rightP = Math.min(currentPosition + k - 1, stringLength - 1);
+            char temp = ' ';
+
+            while(leftP < rightP){
+                temp = charArray[leftP];
+                charArray[leftP] = charArray[rightP];
+                charArray[rightP] = temp;
+                leftP++;
+                rightP--;
+            }
+            
+            currentPosition += 2*k;
+        }
+        return new String(charArray);
+    }
+}
