@@ -1,0 +1,32 @@
+class Solution {
+    public String addStrings(String num1, String num2) {
+        StringBuilder returnString = new StringBuilder();
+        int p1 = num1.length() - 1;
+        int p2 = num2.length() - 1;
+        int carry = 0;
+
+        while (p1 >= 0 || p2 >= 0 || carry > 0) {
+            int digit1 = 0;
+            int digit2 = 0;
+
+            if(p1 >= 0)
+                digit1 = num1.charAt(p1) - '0';
+            else
+                digit1 = 0;
+
+            if(p2 >= 0)
+                digit2 = num2.charAt(p2) - '0';
+            else
+                digit2 = 0;
+
+            int sum = digit1 + digit2 + carry;
+            returnString.append(sum % 10);
+            carry = sum / 10;
+
+            p1--;
+            p2--;
+        }
+
+        return returnString.reverse().toString();
+    }
+}
