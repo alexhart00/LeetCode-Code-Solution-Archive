@@ -1,0 +1,65 @@
+
+import java.awt.Point;
+
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        boolean validRows = rowsCheckerFunction(board);
+        boolean validColumns = columnsCheckerFunction(board);
+        boolean validBoxes = boxesCheckerFunction(board);
+
+        if(validRows && validColumns && validBoxes)
+            return true;
+
+        return false;
+    }
+
+    private boolean rowsCheckerFunction(char[][] board){
+        Set<Character> rowChecker = new HashSet<>();
+        for(int columnI = 0; columnI < 9; columnI++){
+            rowChecker.clear();
+            for(int rowI = 0; rowI < 9; rowI++){
+                if(board[columnI][rowI] != '.')
+                    if( rowChecker.contains( board[columnI][rowI]) )
+                        return false;
+                    else
+                        rowChecker.add( board[columnI][rowI] );
+            }
+        }
+        return true;
+    }
+
+    private boolean columnsCheckerFunction(char[][] board){
+        Set<Character> columnsChecker = new HashSet<>();
+        for(int rowI = 0; rowI < 9; rowI++){
+            columnsChecker.clear();
+            for(int columnI = 0; columnI < 9; columnI++){
+                if(board[columnI][rowI] != '.')
+                    if( columnsChecker.contains( board[columnI][rowI]) )
+                        return false;
+                    else
+                        columnsChecker.add( board[columnI][rowI] );
+            }
+        }
+        return true;
+    }
+
+    private boolean boxesCheckerFunction(char[][] board){
+        Set<Character> boxChecker = new HashSet<>();
+        List<Point> startingSquarePoints = List.of(new Point(0, 0), new Point(0, 3), new Point(0, 6), new Point(3, 0), new Point(3, 3), new Point(3, 6), new Point(6, 0), new Point(6, 3), new Point(6, 6));
+        for (Point p : startingSquarePoints) {
+            boxChecker.clear();
+            for (int columnI = p.x; columnI < p.x + 3; columnI++) {
+                for (int rowI = p.y; rowI < p.y + 3; rowI++) {
+                    if (board[columnI][rowI] != '.') {
+                        if (boxChecker.contains(board[columnI][rowI])) {
+                            return false;
+                        } else {
+                            boxChecker.add(board[columnI][rowI]);
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
