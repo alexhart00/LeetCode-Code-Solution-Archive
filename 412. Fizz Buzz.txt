@@ -1,0 +1,18 @@
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        List<String> FBarray = new ArrayList<String> ();
+        for(int i = 1; i <= n; i++)
+        {
+            String FB = "";
+            if(i%3 == 0)
+                FB += "Fizz";
+            if(i%5 == 0)
+                FB += "Buzz";
+            if(FB == "")
+                FB += String.valueOf(i);
+
+            FBarray.add(FB);
+        }
+        return FBarray;
+    }
+}
