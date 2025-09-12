@@ -1,0 +1,21 @@
+class Solution {
+    public int[] numberOfLines(int[] widths, String s) {
+        int[] result = new int[2];
+        int remainingWidth = 100;
+        int totalLines = 1;
+        
+        for(char c : s.toCharArray()){
+            int charWidth = widths[c - 'a'];
+            if(remainingWidth - charWidth < 0){
+                remainingWidth = 100;
+                totalLines++;
+            }
+            remainingWidth -= charWidth;
+        }
+
+        result[0] = totalLines;
+        result[1] = 100 - remainingWidth;
+
+        return result;
+    }
+}
