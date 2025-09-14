@@ -1,0 +1,8 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        String wordAllUpperCase = word.toUpperCase();
+        String wordAllLowerCase = word.toLowerCase();
+        String wordOnlyFrontCapital = word.substring(0, 1).toUpperCase() + word.substring(1, word.length()).toLowerCase();
+        return wordAllUpperCase.equals(word) || wordAllLowerCase.equals(word) || wordOnlyFrontCapital.equals(word);
+    }
+}
