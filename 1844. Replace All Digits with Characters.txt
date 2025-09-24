@@ -1,0 +1,14 @@
+class Solution {
+    public String replaceDigits(String s) {
+        StringBuilder shiftedString = new StringBuilder(s);
+        
+        for(int i = 1; i < shiftedString.length(); i += 2)
+            shiftedString.setCharAt(i, shift(shiftedString.charAt(i - 1), shiftedString.charAt(i) - '0'));
+
+        return shiftedString.toString();
+    }
+
+    private char shift(char c, int num){
+        return (char) (c + num);
+    }
+}
