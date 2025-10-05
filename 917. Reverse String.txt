@@ -1,0 +1,23 @@
+class Solution {
+    public String reverseOnlyLetters(String s) {
+        StringBuilder reverseS = new StringBuilder(s);
+        int p1 = 0;
+        int p2 = s.length() - 1;
+
+        while(p1 < p2){
+            if (!((reverseS.charAt(p1) >= 'A' && reverseS.charAt(p1) <= 'Z') || (reverseS.charAt(p1) >= 'a' && reverseS.charAt(p1) <= 'z')))
+                p1++;
+            if (!((reverseS.charAt(p2) >= 'A' && reverseS.charAt(p2) <= 'Z') || (reverseS.charAt(p2) >= 'a' && reverseS.charAt(p2) <= 'z')))
+                p2--;
+            if(((reverseS.charAt(p1) >= 'A' && reverseS.charAt(p1) <= 'Z') || (reverseS.charAt(p1) >= 'a' && reverseS.charAt(p1) <= 'z')) && ((reverseS.charAt(p2) >= 'A' && reverseS.charAt(p2) <= 'Z') || (reverseS.charAt(p2) >= 'a' && reverseS.charAt(p2) <= 'z'))){
+                char temp = reverseS.charAt(p1);
+                reverseS.setCharAt(p1, reverseS.charAt(p2));
+                reverseS.setCharAt(p2, temp);
+                p1++;
+                p2--;
+            }
+        }
+
+        return reverseS.toString();
+    }
+}
