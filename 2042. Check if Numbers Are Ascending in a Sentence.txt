@@ -1,0 +1,25 @@
+class Solution {
+    public boolean areNumbersAscending(String s) {
+        StringBuilder numberString = new StringBuilder();
+        int previous = -1;
+
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) 
+                numberString.append(c);
+            else if (c == ' ') 
+                numberString.append(' ');     
+        }
+
+        s = numberString.toString().trim().replaceAll("\\s+", " ");
+
+        int[] intArray = Stream.of(s.split(" ")).filter(str -> !str.isEmpty()).mapToInt(Integer::parseInt).toArray();
+
+        for (int i : intArray) {
+            if (i <= previous) 
+                return false;
+            previous = i;
+        }
+
+        return true;
+    }
+}

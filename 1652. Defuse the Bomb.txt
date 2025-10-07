@@ -1,0 +1,35 @@
+class Solution {
+    public int[] decrypt(int[] code, int k) {
+        int[] decrypted = code.clone();
+        
+        for(int index = 0; index < decrypted.length; index++)
+            decrypted[index] = circularValue(code, k, index);
+        
+        return decrypted;
+    }
+
+    private int circularValue(int[] code, int k, int index){
+        int value = 0;
+        int currentIndex = index;
+        if (k > 0){
+            while(k != 0){
+                currentIndex++;
+                if(currentIndex == code.length)
+                    currentIndex = 0;
+                value += code[currentIndex];
+                k--;
+            }
+        } else if (k < 0) {
+            while(k != 0){
+                currentIndex--;
+                if(currentIndex < 0)
+                    currentIndex = code.length - 1;
+                value += code[currentIndex];
+                k++;
+            }
+        } else{
+            return value;
+        }
+        return value;
+    }
+}
