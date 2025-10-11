@@ -1,0 +1,20 @@
+class Solution {
+    public int twoSumLessThanK(int[] nums, int k) {
+        int sum = -1;
+        int p1 = 0;
+        int p2 = nums.length - 1;
+
+        Arrays.sort(nums);
+        while(p1 < p2){
+            int newSum = nums[p1] + nums[p2];
+            if(newSum < k){
+                sum = Math.max(newSum, sum);
+                p1++;
+            }else{
+                p2--;
+            }
+        }
+
+        return sum;
+    }
+}
