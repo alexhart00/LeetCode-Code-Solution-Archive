@@ -1,0 +1,42 @@
+class Solution {
+    public int numRookCaptures(char[][] board) {
+        int boardSize = board.length;
+
+        for (int rowIndex = 0; rowIndex < boardSize; rowIndex++) 
+            for (int columnIndex = 0; columnIndex < boardSize; columnIndex++) 
+                if (board[rowIndex][columnIndex] == 'R') 
+                    return checkDirections(board, rowIndex, columnIndex, boardSize);
+
+        return 0;
+    }
+
+    private int checkDirections(char[][] board, int rookRow, int rookColumn, int boardSize) {
+        int captureCount = 0;
+
+        for (int rowIndex = rookRow - 1; rowIndex >= 0; rowIndex--) {
+            if (board[rowIndex][rookColumn] == '.') continue;
+            if (board[rowIndex][rookColumn] == 'p') captureCount++;
+            break;
+        }
+
+        for (int rowIndex = rookRow + 1; rowIndex < boardSize; rowIndex++) {
+            if (board[rowIndex][rookColumn] == '.') continue;
+            if (board[rowIndex][rookColumn] == 'p') captureCount++;
+            break;
+        }
+
+        for (int columnIndex = rookColumn - 1; columnIndex >= 0; columnIndex--) {
+            if (board[rookRow][columnIndex] == '.') continue;
+            if (board[rookRow][columnIndex] == 'p') captureCount++;
+            break;
+        }
+
+        for (int columnIndex = rookColumn + 1; columnIndex < boardSize; columnIndex++) {
+            if (board[rookRow][columnIndex] == '.') continue;
+            if (board[rookRow][columnIndex] == 'p') captureCount++;
+            break;
+        }
+
+        return captureCount;
+    }
+}
