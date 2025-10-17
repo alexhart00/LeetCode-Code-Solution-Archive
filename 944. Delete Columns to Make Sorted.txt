@@ -1,0 +1,15 @@
+class Solution {
+    public int minDeletionSize(String[] strs) {
+        int rowLength = strs[0].length();
+        int columnLength = strs.length;
+        int columnDeleteTotal = 0;
+        for(int col = 0; col < rowLength; col++)
+            for(int row = 1; row < columnLength; row++)
+                if(strs[row - 1].charAt(col) > strs[row].charAt(col)){
+                    columnDeleteTotal++;
+                    break;
+                }        
+    
+        return columnDeleteTotal;
+    }
+}
