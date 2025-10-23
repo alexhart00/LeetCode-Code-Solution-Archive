@@ -1,0 +1,13 @@
+class Solution {
+    public boolean hasSameDigits(String s) {
+        StringBuilder digits = new StringBuilder();
+        while(s.length() > 2){
+            for(int i = 1; i < s.length(); i++)
+                digits.append(((Character.getNumericValue(s.charAt(i - 1)) + Character.getNumericValue(s.charAt(i))) % 10)); 
+            s = digits.toString();
+            digits.setLength(0);
+        }
+        
+        return s.charAt(0) == s.charAt(1);
+    }
+}
