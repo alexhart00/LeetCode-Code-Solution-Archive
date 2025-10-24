@@ -1,0 +1,19 @@
+class Solution {
+    public int getMaximumGenerated(int n) {
+        int[] nums = new int[n + 1];
+        int maximum = 0;
+
+        for(int index = 0; index <= n; index++){
+            if(index == 0 || index == 1)
+                nums[index] = index;
+            else if(index % 2 == 0)
+                nums[index] = nums[index / 2];
+            else
+                nums[index] = nums[(index - 1) / 2] + nums[((index - 1)/2) + 1 ];
+
+            maximum = Math.max(maximum, nums[index]);
+        }
+
+        return maximum;
+    }
+}
