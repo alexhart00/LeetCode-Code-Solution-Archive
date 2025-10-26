@@ -1,0 +1,19 @@
+class Solution {
+    public int totalMoney(int n) {
+        int total = 0;
+        int days = 0;
+        int additional = 0;
+
+        while (days < n) {
+            for (int i = 1; i <= 7; i++) {
+                if (days >= n) 
+                    break;
+                total += i + additional;
+                days++;
+            }
+            additional++;
+        }
+
+        return total;
+    }
+}
