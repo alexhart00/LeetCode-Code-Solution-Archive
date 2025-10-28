@@ -1,0 +1,17 @@
+class Solution {
+    public int sumOfDigits(int[] nums) {
+        int min = Integer.MAX_VALUE;
+        for(int num : nums)
+            if(num < min)
+                min = num;
+        
+        int minSum = 0;
+        while(min != 0)
+        {
+            minSum += min % 10;
+            min /= 10;
+        }
+
+        return (minSum % 2 == 0) ? 1 : 0;
+    }
+}
