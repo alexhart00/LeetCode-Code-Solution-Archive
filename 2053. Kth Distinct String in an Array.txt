@@ -1,0 +1,17 @@
+class Solution {
+    public String kthDistinct(String[] arr, int k) {
+        Map<String, Integer> letterMap = new HashMap<>();
+
+        for(String letter : arr)
+            letterMap.put(letter, letterMap.getOrDefault(letter, 0) + 1);
+
+        for(String letter : arr){
+            if(letterMap.get(letter) == 1)
+                k--;
+            if(k == 0)
+                return letter;
+        }
+
+        return "";
+    }
+}
